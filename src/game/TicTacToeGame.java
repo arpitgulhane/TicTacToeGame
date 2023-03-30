@@ -1,6 +1,8 @@
 package game;
 import java.util.Scanner;
 
+import java.util.Scanner;
+
 public class TicTacToeGame {
     private char[] board;
     private char playerMark;
@@ -70,10 +72,36 @@ public class TicTacToeGame {
 
     public static void main(String[] args) {
         TicTacToeGame game = new TicTacToeGame();
-        game.displayBoard();
         game.choosePlayerMark();
         System.out.println("You are " + game.playerMark + ", computer is " + game.computerMark);
         game.displayBoard();
-        // game logic goes here
+
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("Enter the index of the cell you want to mark (1-9):");
+            int index = scanner.nextInt();
+            if (game.placeMark(index, game.playerMark)) {
+                game.displayBoard();
+                if (game.hasWon(game.playerMark)) {
+                    System.out.println("You win!");
+                    break;
+                } else if (game.isBoardFull()) {
+                    System.out.println("Draw!");
+                    break;
+                }
+                System.out.println("Computer's turn...");
+                int computerIndex = game.getComputerMove();
+                game.placeMark(computerIndex, game.computerMark);
+                game.displayBoard();
+                if (game.hasWon(game.computerMark)) {
+                    System.out.println("Computer wins!");
+                    break;
+                } else if (game.isBoardFull()) {
+                    System.out.println("Draw!");
+                    break;
+                }
+            } else {
+                System.out.println("Invalid input, please try again.");
+            }
+        }
     }
-}
