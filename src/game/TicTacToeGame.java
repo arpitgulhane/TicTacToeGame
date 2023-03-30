@@ -70,6 +70,7 @@ public class TicTacToeGame {
 
     public static void main(String[] args) {
         TicTacToeGame game = new TicTacToeGame();
+        game.displayBoard();
         game.choosePlayerMark();
         System.out.println("You are " + game.playerMark + ", computer is " + game.computerMark);
         game.displayBoard();
