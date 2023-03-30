@@ -50,7 +50,13 @@ public class TicTacToeGame {
                 (board[1] == mark && board[5] == mark && board[9] == mark) ||
                 (board[3] == mark && board[5] == mark && board[7] == mark);
     }
-
+    Random random = new Random();
+    int index;
+    do {
+        index = random.nextInt(9) + 1;
+    } while (board[index] != ' ');
+    return index;
+}
     public void choosePlayerMark() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
