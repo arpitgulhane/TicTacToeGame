@@ -105,3 +105,36 @@ public class TicTacToeGame {
             }
         }
     }
+    public boolean hasWon(char mark) {
+        // Check rows
+        if (board[1] == mark && board[2] == mark && board[3] == mark) {
+            return true;
+        }
+        if (board[4] == mark && board[5] == mark && board[6] == mark) {
+            return true;
+        }
+        if (board[7] == mark && board[8] == mark && board[9] == mark) {
+            return true;
+        }
+
+        // Check columns
+        if (board[1] == mark && board[4] == mark && board[7] == mark) {
+            return true;
+        }
+        if (board[2] == mark && board[5] == mark && board[8] == mark) {
+            return true;
+        }
+        if (board[3] == mark && board[6] == mark && board[9] == mark) {
+            return true;
+        }
+
+        // Check diagonals
+        if (board[1] == mark && board[5] == mark && board[9] == mark) {
+            return true;
+        }
+        if (board[3] == mark && board[5] == mark && board[7] == mark) {
+            return true;
+        }
+
+        return false;
+    }
