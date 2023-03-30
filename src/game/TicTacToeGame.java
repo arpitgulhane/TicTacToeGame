@@ -81,7 +81,32 @@ public class TicTacToeGame {
         game.choosePlayerMark();
         System.out.println("You are " + game.playerMark + ", computer is " + game.computerMark);
         game.displayBoard();
+        public int getComputerMove() {
+            // First, check if the computer can win
+            for (int i = 1; i <= 9; i++) {
+                if (board[i] == ' ') {
+                    board[i] = computerMark;
+                    if (hasWon(computerMark)) {
+                        board[i] = ' ';
+                        return i;
+                    }
+                    board[i] = ' ';
+                }
+            }
 
+            // Second, check if the player can win
+            for (int i = 1; i <= 9; i++) {
+                if (board[i] == ' ') {
+                    board[i] = playerMark;
+                    if (hasWon(playerMark)) {
+                        board[i] = ' ';
+                        return i;
+                    }
+                    board[i] = ' ';
+                }
+            }
+        }
+}
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("Enter the index of the cell you want to mark (1-9):");
