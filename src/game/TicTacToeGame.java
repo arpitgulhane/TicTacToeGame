@@ -1,6 +1,10 @@
 package game;
+import java.util.Scanner;
+
 public class TicTacToeGame {
     private char[] board;
+    private char playerMark;
+    private char computerMark;
 
     public TicTacToeGame() {
         board = new char[10];
@@ -45,25 +49,30 @@ public class TicTacToeGame {
                 (board[3] == mark && board[5] == mark && board[7] == mark);
     }
 
+    public void choosePlayerMark() {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("Choose X or O:");
+            String input = scanner.nextLine().toUpperCase();
+            if (input.equals("X")) {
+                playerMark = 'X';
+                computerMark = 'O';
+                break;
+            } else if (input.equals("O")) {
+                playerMark = 'O';
+                computerMark = 'X';
+                break;
+            } else {
+                System.out.println("Invalid input, please try again.");
+            }
+        }
+    }
+
     public static void main(String[] args) {
         TicTacToeGame game = new TicTacToeGame();
+        game.choosePlayerMark();
+        System.out.println("You are " + game.playerMark + ", computer is " + game.computerMark);
         game.displayBoard();
-        game.placeMark(1, 'X');
-        game.placeMark(2, 'O');
-        game.placeMark(5, 'X');
-        game.placeMark(9, 'O');
-        game.placeMark(3, 'X');
-        game.placeMark(4, 'O');
-        game.placeMark(7, 'X');
-        game.placeMark(8, 'O');
-        game.placeMark(6, 'X');
-        game.displayBoard();
-        if (game.hasWon('X')) {
-            System.out.println("X wins!");
-        } else if (game.hasWon('O')) {
-            System.out.println("O wins!");
-        } else if (game.isBoardFull()) {
-            System.out.println("Tie game!");
-        }
+        // game logic goes here
     }
 }
